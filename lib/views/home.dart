@@ -76,8 +76,10 @@ class MyHomePage extends StatelessWidget {
     );
   }
 
-  Widget _buildWidgetContainer(
-      {required String widgetName, required Widget child}) {
+  Widget _buildWidgetContainer({
+    required String widgetName,
+    required Widget child,
+  }) {
     return Container(
       width: double.infinity,
       padding: const EdgeInsets.all(16),
@@ -87,9 +89,15 @@ class MyHomePage extends StatelessWidget {
       ),
       child: Column(
         children: [
-          Text(widgetName),
+          Row(
+            children: [
+              Text(widgetName),
+            ],
+          ),
           const SizedBox(height: 8),
-          child,
+          Center(
+            child: child,
+          ),
         ],
       ),
     );
