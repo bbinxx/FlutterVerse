@@ -54,7 +54,7 @@ class MyHomePage extends StatelessWidget {
               _buildWidgetContainer(
                 widgetName: 'Image Widget',
                 child: Image.network(
-                  'https://picsum.photos/200/300', // Replace with your image URL
+                  'https://picsum.photos/500/500', // Replace with your image URL
                   width: double.infinity, // Adjust image width if needed
                   fit: BoxFit.cover,
                 ),
