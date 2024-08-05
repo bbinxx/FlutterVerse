@@ -30,12 +30,13 @@ class MyHomePage extends StatefulWidget {
 class _MyHomePageState extends State<MyHomePage> {
   String? selectedValue;
   final List<String> items = ['Item 1', 'Item 2', 'Item 3'];
+  final TextEditingController _nameController = TextEditingController();
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: const Text('FlutterVerse'),
+        title: const Text('Flutterverse'),
         centerTitle: true,
       ),
       body: SingleChildScrollView(
@@ -59,8 +60,6 @@ class _MyHomePageState extends State<MyHomePage> {
                 ),
               ),
               const SizedBox(height: 20),
-              //End of wdiget
-
               // Container Widget
               _buildWidgetContainer(
                 widgetName: 'Container Widget',
@@ -72,8 +71,6 @@ class _MyHomePageState extends State<MyHomePage> {
                 ),
               ),
               const SizedBox(height: 20),
-              //End of wdiget
-
               // ElevatedButton
               _buildWidgetContainer(
                 widgetName: 'ElevatedButton',
@@ -86,8 +83,6 @@ class _MyHomePageState extends State<MyHomePage> {
                 ),
               ),
               const SizedBox(height: 20),
-              //End of wdiget
-
               // TextButton
               _buildWidgetContainer(
                 widgetName: 'Text Button',
@@ -99,8 +94,6 @@ class _MyHomePageState extends State<MyHomePage> {
                 ),
               ),
               const SizedBox(height: 20),
-              //End of wdiget
-
               // OutlineButton
               _buildWidgetContainer(
                 widgetName: 'Outline Button',
@@ -112,8 +105,6 @@ class _MyHomePageState extends State<MyHomePage> {
                 ),
               ),
               const SizedBox(height: 20),
-              //End of wdiget
-
               // IconButton
               _buildWidgetContainer(
                 widgetName: 'Icon Button',
@@ -125,8 +116,6 @@ class _MyHomePageState extends State<MyHomePage> {
                 ),
               ),
               const SizedBox(height: 20),
-              //End of wdiget
-
               // FloatingActionButton
               _buildWidgetContainer(
                 widgetName: 'FloatingActionButton',
@@ -138,8 +127,6 @@ class _MyHomePageState extends State<MyHomePage> {
                 ),
               ),
               const SizedBox(height: 20),
-              //End of wdiget
-
               // DropdownButton
               _buildWidgetContainer(
                 widgetName: 'DropdownButton',
@@ -159,7 +146,51 @@ class _MyHomePageState extends State<MyHomePage> {
                 ),
               ),
               const SizedBox(height: 20),
-              //End of wdiget
+
+              // TextFormField with button
+
+              _buildWidgetContainer(
+                widgetName: 'TextFormField',
+                child: Row(
+                  children: [
+                    Expanded(
+                      child: TextFormField(
+                        controller: _nameController,
+                        decoration: const InputDecoration(
+                          labelText: 'Enter your name',
+                        ),
+                      ),
+                    ),
+                    ElevatedButton(
+                      onPressed: () {
+                        String name = _nameController.text;
+                        print('Name: $name');
+                      },
+                      child: const Text('Submit'),
+                    ),
+                  ],
+                ),
+              ),
+              const SizedBox(height: 20),
+
+              // TextField
+              _buildWidgetContainer(
+                widgetName: 'TextField',
+                child: TextField(
+                  decoration: InputDecoration(
+                    filled: true,
+                    fillColor: Colors.grey[200],
+                    enabledBorder: OutlineInputBorder(
+                      borderRadius: BorderRadius.circular(10),
+                      borderSide: BorderSide(color: Colors.grey),
+                    ),
+                    focusedBorder: OutlineInputBorder(
+                      borderRadius: BorderRadius.circular(10),
+                      borderSide: BorderSide(color: Colors.blue),
+                    ),
+                  ),
+                ),
+              ),
             ],
           ),
         ),
