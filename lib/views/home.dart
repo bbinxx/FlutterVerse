@@ -1,4 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:FlutterVerse/views/page1.dart';
+import 'package:FlutterVerse/views/page2.dart';
+import 'package:FlutterVerse/views/page3.dart';
 
 void main() {
   runApp(const MyApp());
@@ -38,6 +41,55 @@ class _MyHomePageState extends State<MyHomePage> {
       appBar: AppBar(
         title: const Text('Flutterverse'),
         centerTitle: true,
+      ),
+      drawer: Drawer(
+        child: ListView(
+          padding: EdgeInsets.zero,
+          children: <Widget>[
+            const DrawerHeader(
+              decoration: BoxDecoration(
+                color: Colors.blue,
+              ),
+              child: Text(
+                'Drawer Header',
+                style: TextStyle(
+                  color: Colors.white,
+                  fontSize: 24,
+                ),
+              ),
+            ),
+            ListTile(
+              leading: const Icon(Icons.add_rounded),
+              title: const Text('Item 1'),
+              onTap: () {
+                Navigator.push(
+                  context,
+                  MaterialPageRoute(builder: (context) => const Item1Screen()),
+                );
+              },
+            ),
+            ListTile(
+              leading: const Icon(Icons.add_rounded),
+              title: const Text('Item 2'),
+              onTap: () {
+                Navigator.push(
+                  context,
+                  MaterialPageRoute(builder: (context) => const Item2Screen()),
+                );
+              },
+            ),
+            ListTile(
+              leading: const Icon(Icons.add_rounded),
+              title: const Text('Item 3'),
+              onTap: () {
+                Navigator.push(
+                  context,
+                  MaterialPageRoute(builder: (context) => const Item3Screen()),
+                );
+              },
+            ),
+          ],
+        ),
       ),
       body: SingleChildScrollView(
         child: Padding(
@@ -182,11 +234,11 @@ class _MyHomePageState extends State<MyHomePage> {
                     fillColor: Colors.grey[200],
                     enabledBorder: OutlineInputBorder(
                       borderRadius: BorderRadius.circular(10),
-                      borderSide: BorderSide(color: Colors.grey),
+                      borderSide: const BorderSide(color: Colors.grey),
                     ),
                     focusedBorder: OutlineInputBorder(
                       borderRadius: BorderRadius.circular(10),
-                      borderSide: BorderSide(color: Colors.blue),
+                      borderSide: const BorderSide(color: Colors.blue),
                     ),
                   ),
                 ),
