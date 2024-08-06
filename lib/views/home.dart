@@ -96,153 +96,27 @@ class _MyHomePageState extends State<MyHomePage> {
           padding: const EdgeInsets.symmetric(horizontal: 16),
           child: Column(
             children: [
-              // Text Widget
-              _buildWidgetContainer(
-                widgetName: 'Text Widget',
-                child: const Text('Hello, Flutter!'),
-              ),
+              _buildTextWidget(),
               const SizedBox(height: 20),
-              // Image Widget
-              _buildWidgetContainer(
-                widgetName: 'Image Widget',
-                child: Image.network(
-                  'https://picsum.photos/500/500', // Replace with your image URL
-                  width: double.infinity, // Adjust image width if needed
-                  fit: BoxFit.cover,
-                ),
-              ),
+              _buildImageWidget(),
               const SizedBox(height: 20),
-              // Container Widget
-              _buildWidgetContainer(
-                widgetName: 'Container Widget',
-                child: Container(
-                  width: double.infinity,
-                  height: 150,
-                  color: Colors.blue,
-                  child: const Center(child: Text('Container')),
-                ),
-              ),
+              _buildContainerWidget(),
               const SizedBox(height: 20),
-              // ElevatedButton
-              _buildWidgetContainer(
-                widgetName: 'ElevatedButton',
-                child: ElevatedButton(
-                  onPressed: () {
-                    // Button press logic
-                    print('ElevatedButton!');
-                  },
-                  child: const Text('Click Me'),
-                ),
-              ),
+              _buildElevatedButtonWidget(),
               const SizedBox(height: 20),
-              // TextButton
-              _buildWidgetContainer(
-                widgetName: 'Text Button',
-                child: TextButton(
-                  onPressed: () {
-                    print('TextButton!');
-                  },
-                  child: const Text('Click Me'),
-                ),
-              ),
+              _buildTextButtonWidget(),
               const SizedBox(height: 20),
-              // OutlineButton
-              _buildWidgetContainer(
-                widgetName: 'Outline Button',
-                child: OutlinedButton(
-                  onPressed: () {
-                    print('OutlinedButton!');
-                  },
-                  child: const Text('Click Me'),
-                ),
-              ),
+              _buildOutlinedButtonWidget(),
               const SizedBox(height: 20),
-              // IconButton
-              _buildWidgetContainer(
-                widgetName: 'Icon Button',
-                child: IconButton(
-                  icon: const Icon(Icons.favorite),
-                  onPressed: () {
-                    print('IconButton!');
-                  },
-                ),
-              ),
+              _buildIconButtonWidget(),
               const SizedBox(height: 20),
-              // FloatingActionButton
-              _buildWidgetContainer(
-                widgetName: 'FloatingActionButton',
-                child: FloatingActionButton(
-                  onPressed: () {
-                    print('FloatingActionButton!');
-                  },
-                  child: const Icon(Icons.add),
-                ),
-              ),
+              _buildFloatingActionButtonWidget(),
               const SizedBox(height: 20),
-              // DropdownButton
-              _buildWidgetContainer(
-                widgetName: 'DropdownButton',
-                child: DropdownButton<String>(
-                  value: selectedValue,
-                  items: items.map((item) {
-                    return DropdownMenuItem<String>(
-                      value: item,
-                      child: Text(item),
-                    );
-                  }).toList(),
-                  onChanged: (value) {
-                    setState(() {
-                      selectedValue = value;
-                    });
-                  },
-                ),
-              ),
+              _buildDropdownButtonWidget(),
               const SizedBox(height: 20),
-
-              // TextFormField with button
-
-              _buildWidgetContainer(
-                widgetName: 'TextFormField',
-                child: Row(
-                  children: [
-                    Expanded(
-                      child: TextFormField(
-                        controller: _nameController,
-                        decoration: const InputDecoration(
-                          labelText: 'Enter your name',
-                        ),
-                      ),
-                    ),
-                    ElevatedButton(
-                      onPressed: () {
-                        String name = _nameController.text;
-                        print('Name: $name');
-                      },
-                      child: const Text('Submit'),
-                    ),
-                  ],
-                ),
-              ),
+              _buildTextFormFieldWidget(),
               const SizedBox(height: 20),
-
-              // TextField
-              _buildWidgetContainer(
-                widgetName: 'TextField',
-                child: TextField(
-                  decoration: InputDecoration(
-                    filled: true,
-                    fillColor: Colors.grey[200],
-                    enabledBorder: OutlineInputBorder(
-                      borderRadius: BorderRadius.circular(10),
-                      borderSide: const BorderSide(color: Colors.grey),
-                    ),
-                    focusedBorder: OutlineInputBorder(
-                      borderRadius: BorderRadius.circular(10),
-                      borderSide: const BorderSide(color: Colors.blue),
-                    ),
-                  ),
-                ),
-              ),
+              _buildTextFieldWidget(),
             ],
           ),
         ),
@@ -250,6 +124,176 @@ class _MyHomePageState extends State<MyHomePage> {
     );
   }
 
+  // Method to build the Text Widget
+  Widget _buildTextWidget() {
+    return _buildWidgetContainer(
+      widgetName: 'Text Widget',
+      child: const Text('Hello, Flutter!'),
+    );
+  }
+
+  // Method to build the Image Widget
+  Widget _buildImageWidget() {
+    return _buildWidgetContainer(
+      widgetName: 'Image Widget',
+      child: Image.network(
+        'https://picsum.photos/500/500', // Replace with your image URL
+        width: double.infinity, // Adjust image width if needed
+        fit: BoxFit.cover,
+        errorBuilder: (context, error, stackTrace) {
+          return const Center(child: Text('Failed to load image'));
+        },
+      ),
+    );
+  }
+
+  // Method to build the Container Widget
+  Widget _buildContainerWidget() {
+    return _buildWidgetContainer(
+      widgetName: 'Container Widget',
+      child: Container(
+        width: double.infinity,
+        height: 150,
+        color: Colors.blue,
+        child: const Center(child: Text('Container')),
+      ),
+    );
+  }
+
+  // Method to build the ElevatedButton Widget
+  Widget _buildElevatedButtonWidget() {
+    return _buildWidgetContainer(
+      widgetName: 'ElevatedButton',
+      child: ElevatedButton(
+        onPressed: () {
+          print('ElevatedButton!');
+        },
+        child: const Text('Click Me'),
+      ),
+    );
+  }
+
+  // Method to build the TextButton Widget
+  Widget _buildTextButtonWidget() {
+    return _buildWidgetContainer(
+      widgetName: 'Text Button',
+      child: TextButton(
+        onPressed: () {
+          print('TextButton!');
+        },
+        child: const Text('Click Me'),
+      ),
+    );
+  }
+
+  // Method to build the OutlinedButton Widget
+  Widget _buildOutlinedButtonWidget() {
+    return _buildWidgetContainer(
+      widgetName: 'Outline Button',
+      child: OutlinedButton(
+        onPressed: () {
+          print('OutlinedButton!');
+        },
+        child: const Text('Click Me'),
+      ),
+    );
+  }
+
+  // Method to build the IconButton Widget
+  Widget _buildIconButtonWidget() {
+    return _buildWidgetContainer(
+      widgetName: 'Icon Button',
+      child: IconButton(
+        icon: const Icon(Icons.favorite),
+        onPressed: () {
+          print('IconButton!');
+        },
+      ),
+    );
+  }
+
+  // Method to build the FloatingActionButton Widget
+  Widget _buildFloatingActionButtonWidget() {
+    return _buildWidgetContainer(
+      widgetName: 'FloatingActionButton',
+      child: FloatingActionButton(
+        onPressed: () {
+          print('FloatingActionButton!');
+        },
+        child: const Icon(Icons.add),
+      ),
+    );
+  }
+
+  // Method to build the DropdownButton Widget
+  Widget _buildDropdownButtonWidget() {
+    return _buildWidgetContainer(
+      widgetName: 'DropdownButton',
+      child: DropdownButton<String>(
+        value: selectedValue,
+        items: items.map((item) {
+          return DropdownMenuItem<String>(
+            value: item,
+            child: Text(item),
+          );
+        }).toList(),
+        onChanged: (value) {
+          setState(() {
+            selectedValue = value;
+          });
+        },
+      ),
+    );
+  }
+
+  // Method to build the TextFormField Widget
+  Widget _buildTextFormFieldWidget() {
+    return _buildWidgetContainer(
+      widgetName: 'TextFormField',
+      child: Row(
+        children: [
+          Expanded(
+            child: TextFormField(
+              controller: _nameController,
+              decoration: const InputDecoration(
+                labelText: 'Enter your name',
+              ),
+            ),
+          ),
+          ElevatedButton(
+            onPressed: () {
+              String name = _nameController.text;
+              print('Name: $name');
+            },
+            child: const Text('Submit'),
+          ),
+        ],
+      ),
+    );
+  }
+
+  // Method to build the TextField Widget
+  Widget _buildTextFieldWidget() {
+    return _buildWidgetContainer(
+      widgetName: 'TextField',
+      child: TextField(
+        decoration: InputDecoration(
+          filled: true,
+          fillColor: Colors.grey[200],
+          enabledBorder: OutlineInputBorder(
+            borderRadius: BorderRadius.circular(10),
+            borderSide: const BorderSide(color: Colors.grey),
+          ),
+          focusedBorder: OutlineInputBorder(
+            borderRadius: BorderRadius.circular(10),
+            borderSide: const BorderSide(color: Colors.blue),
+          ),
+        ),
+      ),
+    );
+  }
+
+  // Method to build a widget container with a title and child widget
   Widget _buildWidgetContainer({
     required String widgetName,
     required Widget child,
