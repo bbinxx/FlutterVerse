@@ -64,7 +64,8 @@ class _MyHomePageState extends State<MyHomePage> {
               onTap: () {
                 Navigator.push(
                   context,
-                  MaterialPageRoute(builder: (context) => const Item1Screen()),
+                  MaterialPageRoute(
+                      builder: (context) => const notificationService()),
                 );
               },
             ),
