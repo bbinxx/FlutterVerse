@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:FlutterVerse/views/page1.dart';
 import 'package:FlutterVerse/views/page2.dart';
 import 'package:FlutterVerse/views/page3.dart';
+import 'package:fluttertoast/fluttertoast.dart';
 
 void main() {
   runApp(const MyApp());
@@ -13,6 +14,7 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
+      builder: FToastBuilder(),
       title: 'Flutterverse',
       theme: ThemeData(
         primarySwatch: Colors.blue,
@@ -31,6 +33,7 @@ class MyHomePage extends StatefulWidget {
 }
 
 class _MyHomePageState extends State<MyHomePage> {
+  late FToast fToast;
   String? selectedValue;
   final List<String> items = ['Item 1', 'Item 2', 'Item 3'];
   final TextEditingController _nameController = TextEditingController();
@@ -64,8 +67,7 @@ class _MyHomePageState extends State<MyHomePage> {
               onTap: () {
                 Navigator.push(
                   context,
-                  MaterialPageRoute(
-                      builder: (context) => const notificationService()),
+                  MaterialPageRoute(builder: (context) => const Item1Screen()),
                 );
               },
             ),
@@ -168,6 +170,7 @@ class _MyHomePageState extends State<MyHomePage> {
       child: ElevatedButton(
         onPressed: () {
           print('ElevatedButton!');
+          _showToast("ElevatedButton");
         },
         child: const Text('Click Me'),
       ),
@@ -181,6 +184,7 @@ class _MyHomePageState extends State<MyHomePage> {
       child: TextButton(
         onPressed: () {
           print('TextButton!');
+          _showToast("TextButton");
         },
         child: const Text('Click Me'),
       ),
@@ -194,6 +198,7 @@ class _MyHomePageState extends State<MyHomePage> {
       child: OutlinedButton(
         onPressed: () {
           print('OutlinedButton!');
+          _showToast("OutlinedButton");
         },
         child: const Text('Click Me'),
       ),
@@ -208,6 +213,7 @@ class _MyHomePageState extends State<MyHomePage> {
         icon: const Icon(Icons.favorite),
         onPressed: () {
           print('IconButton!');
+          _showToast("IconButton");
         },
       ),
     );
@@ -220,6 +226,7 @@ class _MyHomePageState extends State<MyHomePage> {
       child: FloatingActionButton(
         onPressed: () {
           print('FloatingActionButton!');
+          _showToast("FloatingActionButton");
         },
         child: const Icon(Icons.add),
       ),
@@ -265,6 +272,7 @@ class _MyHomePageState extends State<MyHomePage> {
             onPressed: () {
               String name = _nameController.text;
               print('Name: $name');
+              _showToast(name);
             },
             child: const Text('Submit'),
           ),
@@ -292,6 +300,51 @@ class _MyHomePageState extends State<MyHomePage> {
         ),
       ),
     );
+  }
+
+  @override
+  void initState() {
+    super.initState();
+    fToast = FToast();
+    fToast.init(context);
+  }
+
+  void _showToast(String message) {
+    Widget toast = Container(
+      padding: const EdgeInsets.symmetric(horizontal: 24.0, vertical: 12.0),
+      decoration: BoxDecoration(
+        borderRadius: BorderRadius.circular(25.0),
+        color: Colors.greenAccent,
+      ),
+      child: Row(
+        mainAxisSize: MainAxisSize.min,
+        children: [
+          Text(message),
+        ],
+      ),
+    );
+
+    // Custom Toast Position
+    fToast.showToast(
+      child: toast,
+      gravity: ToastGravity.BOTTOM,
+      toastDuration: Duration(seconds: 1),
+      // positionedToastBuilder: (context, child) {
+      //   return Positioned(
+      //     child: child,
+      //     top: 16.0,
+      //     left: 16.0,
+      //   );
+      // },
+    );
+    // Fluttertoast.showToast(
+    //     msg: message,
+    //     toastLength: Toast.LENGTH_SHORT,
+    //     gravity: ToastGravity.CENTER,
+    //     timeInSecForIosWeb: 1,
+    //     backgroundColor: Colors.red,
+    //     textColor: Colors.white,
+    //     fontSize: 16.0);
   }
 
   // Method to build a widget container with a title and child widget
