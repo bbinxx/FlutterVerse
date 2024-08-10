@@ -11,18 +11,42 @@ class MyApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(
-      title: 'FlutterVerse',
-      theme: ThemeData(
-        textTheme: GoogleFonts.spaceGroteskTextTheme(
-          Theme.of(context).textTheme,
-        ),
-        colorScheme: ColorScheme.fromSeed(seedColor: Colors.deepPurple),
-        useMaterial3: true,
-        scaffoldBackgroundColor: Colors.white,
-      ),
-      debugShowCheckedModeBanner: false,
-      home: const MyHomePage(),
+    return ValueListenableBuilder(
+      valueListenable: ThemeNotifier.instance,
+      builder: (context, themeMode, child) {
+        return MaterialApp(
+          title: 'FlutterVerse',
+          theme: ThemeData(
+            textTheme: GoogleFonts.spaceGroteskTextTheme(
+              Theme.of(context).textTheme,
+            ),
+            colorScheme: ColorScheme.fromSeed(seedColor: Colors.deepPurple),
+            useMaterial3: true,
+            scaffoldBackgroundColor: Colors.white,
+          ),
+          darkTheme: ThemeData(
+            textTheme: GoogleFonts.spaceGroteskTextTheme(
+              Theme.of(context).textTheme,
+            ),
+            colorScheme: ColorScheme.fromSeed(seedColor: Colors.deepPurple),
+            useMaterial3: true,
+            scaffoldBackgroundColor: Colors.black,
+          ),
+          themeMode: themeMode,
+          debugShowCheckedModeBanner: false,
+          home: const MyHomePage(),
+        );
+      },
     );
+  }
+}
+
+class ThemeNotifier extends ValueNotifier<ThemeMode> {
+  ThemeNotifier._() : super(ThemeMode.light);
+
+  static final ThemeNotifier instance = ThemeNotifier._();
+
+  void toggleTheme() {
+    value = value == ThemeMode.light ? ThemeMode.dark : ThemeMode.light;
   }
 }

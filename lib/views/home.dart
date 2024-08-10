@@ -1,3 +1,4 @@
+import 'package:FlutterVerse/main.dart';
 import 'package:flutter/material.dart';
 import 'package:FlutterVerse/views/page1.dart';
 import 'package:FlutterVerse/views/page2.dart';
@@ -44,6 +45,16 @@ class _MyHomePageState extends State<MyHomePage> {
       appBar: AppBar(
         title: const Text('Flutterverse'),
         centerTitle: true,
+        actions: [
+          IconButton(
+            icon: Icon(ThemeNotifier.instance.value == ThemeMode.light
+                ? Icons.dark_mode
+                : Icons.light_mode),
+            onPressed: () {
+              ThemeNotifier.instance.toggleTheme();
+            },
+          ),
+        ],
       ),
       drawer: Drawer(
         child: ListView(
@@ -99,6 +110,7 @@ class _MyHomePageState extends State<MyHomePage> {
           padding: const EdgeInsets.symmetric(horizontal: 16),
           child: Column(
             children: [
+              const SizedBox(height: 20),
               _buildTextWidget(),
               const SizedBox(height: 20),
               _buildImageWidget(),
@@ -120,6 +132,7 @@ class _MyHomePageState extends State<MyHomePage> {
               _buildTextFormFieldWidget(),
               const SizedBox(height: 20),
               _buildTextFieldWidget(),
+              const SizedBox(height: 20),
             ],
           ),
         ),
@@ -334,8 +347,7 @@ class _MyHomePageState extends State<MyHomePage> {
       //     child: child,
       //     top: 16.0,
       //     left: 16.0,
-      //   );
-      // },
+      //   ),
     );
     // Fluttertoast.showToast(
     //     msg: message,
