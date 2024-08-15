@@ -78,7 +78,8 @@ class _MyHomePageState extends State<MyHomePage> {
               onTap: () {
                 Navigator.push(
                   context,
-                  MaterialPageRoute(builder: (context) => const Item1Screen()),
+                  MaterialPageRoute(
+                      builder: (context) => const Item1Screen()),
                 );
               },
             ),
@@ -153,7 +154,7 @@ class _MyHomePageState extends State<MyHomePage> {
     return _buildWidgetContainer(
       widgetName: 'Image Widget',
       child: Image.network(
-        'https://picsum.photos/500/500', // Replace with your image URL
+        'https://picsum.photos/400/400', // Replace with your image URL
         width: double.infinity, // Adjust image width if needed
         fit: BoxFit.cover,
         errorBuilder: (context, error, stackTrace) {
