@@ -1,0 +1,9 @@
+# Force GitHub to count Dart files and ignore native platform files for stats
+android/** linguist-vendored
+ios/** linguist-vendored
+macos/** linguist-vendored
+windows/** linguist-vendored
+linux/** linguist-vendored
+build/** linguist-generated
+
+*.dart linguist-language=Dart
