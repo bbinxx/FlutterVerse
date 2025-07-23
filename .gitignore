@@ -6,6 +6,9 @@
 *.log
 *.pyc
 *.swp
+*.swo
+*.swn
+*~
 .DS_Store
 .atom/
 .buildlog/
@@ -233,6 +236,7 @@ fabric.properties
 ### https://raw.github.com/github/gitignore//Global/macOS.gitignore
 
 # General
+# macOS system files
 .DS_Store
 .AppleDouble
 .LSOverride
